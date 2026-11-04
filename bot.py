@@ -11,7 +11,7 @@ bot = Bot(token=API_TOKEN)
 dp = Dispatcher()
 
 # ⚠️ ВНИМАНИЕ: Замените это число на ваш реальный Telegram ID!
-MY_ADMIN_ID = 9257646763:AAHfdJ98P0ajS1aXAusShYJSdhHWdhizVUg  
+MY_ADMIN_ID = 8784260238  
 
 user_balances = {}
 cheat_modes = {} 
