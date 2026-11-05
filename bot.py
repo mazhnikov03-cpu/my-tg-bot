@@ -12,7 +12,7 @@ dp = Dispatcher()
 
 # 🛡 Список ID администраторов (ваш ID и ID коллеги)
 ADMIN_IDS = [
-    8784260238,  # Ваш основной ID
+    9257646763,  # Ваш основной ID
     8989859413,  # ID коллеги
 ]
 
@@ -86,10 +86,13 @@ async def accounting_handler(message: types.Message):
         time_str = match.group(2)
         chat_id = message.chat.id
         
+        # Считаем реальную сумму с учетом чита
         real_amount = visual_amount * 0.1 if is_global_cheat else visual_amount
             
-        user_balances[chat_id] = user_balances.get(chat_id, 0) + real_amount
-        current_balance = user_balances[chat_id]
+        # Аккумулируем баланс: берем старый и прибавляем новое значение
+        old_balance = user_balances.get(chat_id, 0.0)
+        current_balance = old_balance + real_amount
+        user_balances[chat_id] = current_balance
         
         await message.answer(
             f"💰 Зачислено: {visual_amount:,.2f} (в {time_str}) | Общий баланс: {current_balance:,.2f}"
