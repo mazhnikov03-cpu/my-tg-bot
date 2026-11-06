@@ -12,7 +12,7 @@ dp = Dispatcher()
 
 # 🛡 Список ID администраторов (ваш ID и ID коллеги)
 ADMIN_IDS = [
-    8784260238,  # Ваш основной ID
+    9257646763,  # Ваш основной ID
     8989859413,  # ID коллеги
 ]
 
@@ -112,6 +112,10 @@ async def web_server():
 
 async def main():
     await web_server()
+    
+    # 🛡 Защита от конфликтов сессий при старте
+    await bot.delete_webhook(drop_pending_updates=True)
+    
     await dp.start_polling(bot)
 
 if __name__ == '__main__':
